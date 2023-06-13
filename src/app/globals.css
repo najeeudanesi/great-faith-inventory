@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.input{
+  color: #FFFF;
+  background:none;
+  border-radius: 6px;
+  border: 2px solid #BF3F94; 
+}
+
+.primary-button:hover{
+  background-color: #871e64;
+}
+
+.primary-button{
+  color: #FFFF;
+  background-color: #BF3F94;
+  border-radius: 4px;
+  width: 100%;
+  box-shadow: 0px 10px 31px rgba(152, 34, 112, 0.29);
+ 
+}
+
+@layer components { 
+  .btn-pad{
+    @apply px-3 py-2 font-bold  
+  }
+
+  .input-decoration{
+    @apply shadow appearance-none border rounded w-full py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none 
+  }
+}
+
+
+

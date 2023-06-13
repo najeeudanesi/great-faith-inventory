@@ -1,0 +1,6 @@
+@layer component{
+    .nav-link{
+        @apply p-4 mb-6 w-60 hover:bg-pink-700 rounded-lg
+    }
+}
+
