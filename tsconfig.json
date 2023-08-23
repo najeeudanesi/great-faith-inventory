@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/auth.js", "src/app/api/dashboard/settings/page.js", "src/app/components/Categories/brand.js", "src/app/components/Categories/storage.js", "src/app/components/Forms/add-new-stock.js", "src/app/components/searchComponent.js", "src/app/components/sidebar.js", "src/app/components/topbar.js"], "src/app/components/date-picker.js",
   "exclude": ["node_modules"]
 }

@@ -23,7 +23,7 @@ const NewStockCard = () => {
   };
 
   return (
-    <div className="bg-pink-950 rounded-lg p-8 h-48 w-64">
+    <div className="bg-pink-950 rounded-lg p-8 h-48 w-54 mb-2">
       <div className="flex justify-between items-center mb-4">
         <div className="text-md font-bold text-left">New Stock</div>
         <div className="flex">

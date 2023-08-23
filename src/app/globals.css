@@ -28,7 +28,6 @@ body {
 
 .input{
   color: #FFFF;
-  background:none;
   border-radius: 6px;
   border: 2px solid #BF3F94; 
 }
@@ -47,12 +46,34 @@ body {
 }
 
 @layer components { 
+
+  .cont{
+    height: 580px;
+  }
   .btn-pad{
     @apply px-3 py-2 font-bold  
   }
 
   .input-decoration{
-    @apply shadow appearance-none border rounded w-full py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none 
+    @apply shadow appearance-none border rounded bg-transparent w-full py-2 px-3 my-4 text-gray-700 leading-tight focus:outline-none 
+  }
+  .icon{
+    @apply h-6 w-6 mr-2
+}
+  .label{
+    @apply text-sm text-gray-400
+  }
+
+  .tab-row{
+    @apply px-6 py-4 whitespace-nowrap bg-transparent text-sm text-gray-100
+  }
+
+  .table-head{
+    @apply px-6 py-3 text-left text-xs bg-transparent font-medium text-gray-100 uppercase tracking-wider
+  }
+
+  .option{
+    @apply text-black font-semibold
   }
 }
 
