@@ -1,8 +1,8 @@
 "use client";
-import creditData from "@/app/components/Credit/creditData";
-import CreditTable from "@/app/components/Credit/creditTable";
-import DatePicker from "@/app/components/date-picker";
-import SearchComponent from "@/app/components/searchComponent";
+import creditData from "../../components/Credit/creditData";
+import CreditTable from "../../components/Credit/creditTable";
+import DatePicker from "../../components/date-picker";
+import SearchComponent from "../../components/searchComponent";
 import React from "react";
 
 function page() {

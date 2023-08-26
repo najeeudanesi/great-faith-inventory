@@ -1,7 +1,7 @@
 "use client";
-import Sidebar from "@/app/components/sidebar";
-import Topbar from "@/app/components/topbar";
-import { auth } from "@/app/config/firebase";
+import Sidebar from "../components/sidebar";
+import Topbar from "../components/topbar";
+import { auth } from "../config/firebase";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";

@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import { auth, db } from "@/app/config/firebase";
+import { auth, db } from "../config/firebase";
 import { useRouter } from "next/navigation";
-import StockCard from "@/app/components/Dashboard/stockCard";
-import NewStockCard from "@/app/components/Dashboard/newStockCard";
-import SalesCard from "@/app/components/Dashboard/salesCard";
-import RecentCard from "@/app/components/Dashboard/recentCard";
-import ReturnCard from "@/app/components/Dashboard/returnCard";
+import StockCard from "../components/Dashboard/stockCard";
+import NewStockCard from "../components/Dashboard/newStockCard";
+import SalesCard from "../components/Dashboard/salesCard";
+import RecentCard from "../components/Dashboard/recentCard";
+import ReturnCard from "../components/Dashboard/returnCard";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";

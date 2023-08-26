@@ -5,7 +5,7 @@ import ItemsCard from "@/app/components/Products/itemsCard";
 import SearchComponent from "../../components/searchComponent";
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { db } from "@/app/config/firebase";
+import { db } from "../../config/firebase";
 import { onSnapshot, query, collection, orderBy } from "firebase/firestore";
 export default function page() {
   const [itemsList, setItemsList] = React.useState([]);

@@ -1,9 +1,9 @@
 "use client";
-import SalesTable from "@/app/components/Sales/salesTable";
+import SalesTable from "../../components/Sales/salesTable";
 import React, { useEffect } from "react";
-import SearchComponent from "@/app/components/searchComponent";
-import DatePicker from "@/app/components/date-picker";
-import { db } from "@/app/config/firebase";
+import SearchComponent from "../../components/searchComponent";
+import DatePicker from "../../components/date-picker";
+import { db } from "../../config/firebase";
 import { onSnapshot, query, collection, orderBy } from "firebase/firestore";
 
 export default function Page() {
