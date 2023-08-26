@@ -8,8 +8,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function DashboardLayout({
   children, // will be a page or nested layout
-}: {
-  children: React.ReactNode;
 }) {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
