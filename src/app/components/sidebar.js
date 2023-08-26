@@ -57,8 +57,8 @@ const Sidebar = () => {
         </div>
         <nav className="flex flex-col flex-grow px-4 py-2">
           <Link
-            href="/api/dashboard"
-            className={`nav-link ${isActive("/api/dashboard")}`}
+            href="/dashboard"
+            className={`nav-link ${isActive("/dashboard")}`}
           >
             <div className="flex">
               <Squares2X2Icon className="icon" /> Dashboard
@@ -66,8 +66,8 @@ const Sidebar = () => {
           </Link>
 
           <Link
-            href="/api/dashboard/sales"
-            className={`nav-link ${isActive("/api/dashboard/sales")}`}
+            href="/dashboard/sales"
+            className={`nav-link ${isActive("/dashboard/sales")}`}
           >
             <div className="flex">
               <CurrencyDollarIcon className="icon" />
@@ -76,8 +76,8 @@ const Sidebar = () => {
           </Link>
 
           <Link
-            href="/api/dashboard/products"
-            className={`nav-link ${isActive("/api/dashboard/products")}`}
+            href="/dashboard/products"
+            className={`nav-link ${isActive("/dashboard/products")}`}
           >
             <div className="flex">
               <SwatchIcon className="icon" /> Products
@@ -85,16 +85,16 @@ const Sidebar = () => {
           </Link>
 
           {/* <Link
-            href="/api/dashboard/credit"
-            className={`nav-link ${isActive("/api/dashboard/credit")}`}
+            href="/dashboard/credit"
+            className={`nav-link ${isActive("/dashboard/credit")}`}
           >
             <div className="flex">
               <InformationCircleIcon className="icon" /> Credit
             </div>
           </Link> */}
           {/* <Link
-            href="/api/dashboard/categories"
-            className={`nav-link ${isActive("/api/dashboard/categories")}`}
+            href="/dashboard/categories"
+            className={`nav-link ${isActive("/dashboard/categories")}`}
           >
             {" "}
             <div className="flex">
@@ -104,8 +104,8 @@ const Sidebar = () => {
           </Link> */}
 
           <Link
-            href="/api/dashboard/settings"
-            className={`nav-link ${isActive("/api/dashboard/settings")}`}
+            href="dashboard/settings"
+            className={`nav-link ${isActive("/dashboard/settings")}`}
           >
             <div className="flex">
               <WrenchScrewdriverIcon className="icon" />

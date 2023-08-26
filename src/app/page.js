@@ -1,6 +1,6 @@
 import { Auth } from "./components/auth";
 
-export default function Home() {
+export default function Page() {
   return (
     <div>
       <Auth />

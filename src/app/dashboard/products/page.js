@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import ItemsCard from "@/app/components/Products/itemsCard";
-import SearchComponent from "../../../components/searchComponent";
+import SearchComponent from "../../components/searchComponent";
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { db } from "@/app/config/firebase";
