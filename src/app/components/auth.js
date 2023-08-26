@@ -31,7 +31,7 @@ export const Auth = () => {
           };
           setUser(loggedInUser);
           console.log(user);
-          navigate.push("/api/dashboard");
+          navigate.push("/dashboard");
         }
       );
     } catch (e) {
@@ -44,7 +44,7 @@ export const Auth = () => {
       await signInWithPopup(auth, googleProvider).then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        navigate.push("/api/dashboard");
+        navigate.push("/dashboard");
       });
     } catch (e) {
       console.error("Error occured: " + e);
