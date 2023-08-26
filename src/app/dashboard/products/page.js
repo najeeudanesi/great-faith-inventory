@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import ItemsCard from "@/app/components/Products/itemsCard";
+import ItemsCard from "../../components/Products/itemsCard";
 import SearchComponent from "../../components/searchComponent";
 import React, { useEffect } from "react";
 import Link from "next/link";
