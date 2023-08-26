@@ -1,52 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const NewStockCard = () => {
-  const [activeTab, setActiveTab] = useState('new');
+  const [activeTab, setActiveTab] = useState("new");
   const [salesData, setSalesData] = useState({
-     new: {
+    new: {
       phones: 50,
       laptops: 30,
       others: 20,
-     },
+    },
 
-     used: {
+    used: {
       phones: 50,
       laptops: 30,
       others: 20,
-     }
-
-   
+    },
   });
 
-  const handleTabClick = (tab: React.SetStateAction<string>) => {
+  const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
   return (
-    <div className="bg-pink-950 rounded-lg p-8 h-48 w-64">
+    <div className="bg-pink-950 rounded-lg p-8 h-48 w-54 mb-2">
       <div className="flex justify-between items-center mb-4">
         <div className="text-md font-bold text-left">New Stock</div>
         <div className="flex">
           <button
             className={`mr-2 px-2 py-1 rounded text-sm ${
-              activeTab === 'new' ? 'bg-pink-600 text-white' : 'bg-pink-950'
+              activeTab === "new" ? "bg-pink-600 text-white" : "bg-pink-950"
             }`}
-            onClick={() => handleTabClick('new')}
+            onClick={() => handleTabClick("new")}
           >
             New
           </button>
           <button
             className={`px-2 py-1 rounded text-sm ${
-              activeTab === 'used' ? 'bg-pink-600 text-white' : 'bg-pink-950'
+              activeTab === "used" ? "bg-pink-600 text-white" : "bg-pink-950"
             }`}
-            onClick={() => handleTabClick('used')}
+            onClick={() => handleTabClick("used")}
           >
             Used
           </button>
         </div>
       </div>
       <div>
-        {activeTab === 'new' ? (
+        {activeTab === "new" ? (
           <div>
             <div className="flex justify-between mb-2">
               <span>Phones:</span>
@@ -62,18 +60,21 @@ const NewStockCard = () => {
             </div>
           </div>
         ) : (
-          <div> <div className="flex justify-between mb-2">
-          <span>Phones:</span>
-          <span>{salesData.used.phones}</span>
-        </div>
-        <div className="flex justify-between mb-2">
-          <span>Laptops:</span>
-          <span>{salesData.used.laptops}</span>
-        </div>
-        <div className="flex justify-between">
-          <span>Others:</span>
-          <span>{salesData.used.others}</span>
-        </div></div>
+          <div>
+            {" "}
+            <div className="flex justify-between mb-2">
+              <span>Phones:</span>
+              <span>{salesData.used.phones}</span>
+            </div>
+            <div className="flex justify-between mb-2">
+              <span>Laptops:</span>
+              <span>{salesData.used.laptops}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Others:</span>
+              <span>{salesData.used.others}</span>
+            </div>
+          </div>
         )}
       </div>
     </div>

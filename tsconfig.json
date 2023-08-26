@@ -23,6 +23,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/auth.js", "src/app/api/dashboard/settings/page.js", "src/app/components/Categories/brand.js", "src/app/components/Categories/storage.js", "src/app/components/Forms/add-new-stock.js", "src/app/components/searchComponent.js", "src/app/components/sidebar.js", "src/app/components/topbar.js","src/app/components/date-picker.js", "src/app/components/Sales/salesTable.js", "src/app/api/dashboard/layout.js", "src/app/api/dashboard/page.js", "src/app/components/Sales/data.js", "src/app/components/Credit/creditData.js", "src/app/components/Credit/creditTable.js", "src/app/components/Dashboard/stockCard.js", "src/app/components/Dashboard/salesCard.js", "src/app/components/Dashboard/returnCard.js", "src/app/components/Dashboard/recentCard.js", "src/app/components/Dashboard/newStockCard.js", "src/app/components/Forms/swap-sale.js", "src/app/components/Forms/direct-sale.js", "src/app/components/Products/itemsCard.js", "src/app/api/dashboard/categories/page.js", "src/app/api/dashboard/credit/page.js", "src/app/api/dashboard/products/page.js", "src/app/api/dashboard/products/add-new/page.js", "src/app/api/dashboard/sales/page.js"],
+  "exclude": ["node_modules"],
+
 }

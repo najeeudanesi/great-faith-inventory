@@ -1,10 +1,9 @@
-import { Auth } from './components/auth'
+import { Auth } from "./components/auth";
 
 export default function Home() {
   return (
-   
-  <div>
-    <Auth/>
-  </div>
-  )
+    <div>
+      <Auth />
+    </div>
+  );
 }
