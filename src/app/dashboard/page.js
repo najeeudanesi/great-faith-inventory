@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import { auth, db } from "../config/firebase";
 import { useRouter } from "next/navigation";
@@ -58,7 +57,7 @@ export default function Page() {
             <div className="flex gap-4 mb-4">
               {" "}
               <Link
-                href="/api/dashboard/add-new-sale"
+                href="/dashboard/add-new-sale"
                 className="bg-green-700 text-white px-4 py-2 rounded-md"
               >
                 Add New
