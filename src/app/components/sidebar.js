@@ -40,7 +40,7 @@ const Sidebar = () => {
         unsubscribe();
       };
     });
-  }, []);
+  }, [setUser]);
 
   return (
     <div className=" bg-black  h-screen  text-white pt-6 pr-6 outline outline-1 outline-pink-950">

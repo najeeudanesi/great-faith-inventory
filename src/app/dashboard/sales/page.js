@@ -24,7 +24,7 @@ export default function Page() {
     );
 
     return unsubscribe;
-  }, [db]);
+  }, [itemsList]);
 
   const [filteredItems, setFilteredItems] = React.useState(itemsList);
 
