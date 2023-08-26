@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
-import DeviceTypeTable from "@/app/components/Categories/device";
-import StorageTable from "@/app/components/Categories/storage";
-import ColorTable from "@/app/components/Categories/color";
-import BrandTable from "@/app/components/Categories/brand";
+import DeviceTypeTable from "../../components/Categories/device";
+import StorageTable from "../../components/Categories/storage";
+import ColorTable from "../../components/Categories/color";
+import BrandTable from "../../components/Categories/brand";
 import Link from "next/link";
 import React, { useState } from "react";
 
