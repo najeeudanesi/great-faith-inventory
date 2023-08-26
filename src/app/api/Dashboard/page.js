@@ -10,9 +10,6 @@ import ReturnCard from "@/app/components/Dashboard/returnCard";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-export const metadata = {
-  title: "Dashboard",
-};
 
 export default function Page() {
   const [data, setData] = useState([]);
