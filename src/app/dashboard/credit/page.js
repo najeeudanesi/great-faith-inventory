@@ -5,7 +5,7 @@ import DatePicker from "../../components/date-picker";
 import SearchComponent from "../../components/searchComponent";
 import React from "react";
 
-function page() {
+export default function page() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [filteredItems, setFilteredItems] = React.useState(creditData);
 
@@ -37,5 +37,3 @@ function page() {
     </div>
   );
 }
-
-export default page;

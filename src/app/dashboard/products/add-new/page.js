@@ -3,7 +3,7 @@ import { BackwardIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import React from "react";
 
-function page() {
+export default function page() {
   return (
     <div className="container mx-auto bg-transparent mb-56">
       <div className="mx-12 my-4 flex gap-12 items-center">
@@ -22,5 +22,3 @@ function page() {
     </div>
   );
 }
-
-export default page;

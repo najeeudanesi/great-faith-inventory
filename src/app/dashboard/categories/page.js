@@ -7,7 +7,7 @@ import BrandTable from "../../components/Categories/brand";
 import Link from "next/link";
 import React, { useState } from "react";
 
-function page() {
+export default function page() {
   const [activeTab, setActiveTab] = useState("Device");
 
   const handleTabChange = (tab) => {
@@ -75,5 +75,3 @@ function page() {
     </div>
   );
 }
-
-export default page;

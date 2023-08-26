@@ -6,7 +6,7 @@ import BackwardIcon from "@heroicons/react/24/solid/BackwardIcon";
 import Link from "next/link";
 import React, { useState } from "react";
 
-function page() {
+export default function page() {
   const [activeTab, setActiveTab] = useState("direct");
 
   const handleTabChange = (tab) => {
@@ -16,7 +16,7 @@ function page() {
   return (
     <div className="m-8">
       <div className="mx-2 my-4 flex gap-12 items-center">
-        <Link href="/dashboard" className="flex text-pink-500">
+        <Link href="/api/dashboard" className="flex text-pink-500">
           {" "}
           <BackwardIcon className="icon" /> Back
         </Link>{" "}
@@ -52,5 +52,3 @@ function page() {
     </div>
   );
 }
-
-export default page;
