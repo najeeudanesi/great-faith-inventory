@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
 
@@ -5,22 +6,16 @@
 import { useState, useEffect, useRef } from "react";
 import { auth, db, storage } from "../../config/firebase";
 import { ref, getDownloadURL, uploadString } from "@firebase/storage";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDocs,
-  query,
-  updateDoc,
-  where,
-} from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  signOut,
   updatePassword,
   updateProfile,
 } from "firebase/auth";
+import { ArrowPathIcon } from "@heroicons/react/24/solid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function page() {
   const [profileImage, setProfileImage] = useState(null);
@@ -30,8 +25,21 @@ export default function page() {
   const [email, setEmail] = useState("");
   const [user, setUser] = useState(null);
   const filePickerRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const showSuccessMessage = () => {
+    toast.success("success", {
+      position: toast.POSITION.TOP_RIGHT,
+      theme: "dark",
+    });
+  };
+  const showErrorMessage = () => {
+    toast.error("error", {
+      position: toast.POSITION.TOP_RIGHT,
+      theme: "dark",
+    });
+  };
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -43,7 +51,7 @@ export default function page() {
         setName("");
       }
     });
-  }, []);
+  }, [auth]);
 
   const handleProfileImageChange = (e) => {
     const reader = new FileReader();
@@ -73,9 +81,10 @@ export default function page() {
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
-    if (password !== "") {
+    if (oldPassword !== "") {
       try {
         await signInWithEmailAndPassword(auth, email, oldPassword).then(() => {
           updatePassword(user, password).then(() => {
@@ -83,8 +92,9 @@ export default function page() {
           });
         });
       } catch (error) {
+        showErrorMessage();
         console.error(error);
-
+        setIsLoading(false);
         return;
       }
     }
@@ -96,10 +106,15 @@ export default function page() {
       });
 
       await updateImage();
+      setIsLoading(false);
 
-      console.log("Submitted");
+      showSuccessMessage();
     } catch (error) {
-      console.error(error);
+      setIsLoading(false);
+
+      showErrorMessage();
+      console.log(error);
+      return;
     }
   };
 
@@ -127,6 +142,7 @@ export default function page() {
 
   return (
     <div>
+      <ToastContainer />
       <form
         onSubmit={handleSubmit}
         className="flex flex-col  grid-cols-12 mt-8 pb-56"
@@ -217,8 +233,12 @@ export default function page() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="primary-button btn-pad flex justify-center"
+                disabled={isLoading}
               >
+                {isLoading && (
+                  <ArrowPathIcon className="animate-spin h-5 w-5" />
+                )}
                 Save Changes
               </button>
             </div>

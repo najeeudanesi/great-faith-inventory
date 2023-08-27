@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import SalesTable from "../../components/Sales/salesTable";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SearchComponent from "../../components/searchComponent";
 import DatePicker from "../../components/date-picker";
 import { db } from "../../config/firebase";
 import { onSnapshot, query, collection, orderBy } from "firebase/firestore";
 
 export default function Page() {
-  const [itemsList, setItemsList] = React.useState([]);
+  const [itemsList, setItemsList] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -24,7 +25,7 @@ export default function Page() {
     );
 
     return unsubscribe;
-  }, [itemsList]);
+  }, [db]);
 
   const [filteredItems, setFilteredItems] = React.useState(itemsList);
 
@@ -37,7 +38,8 @@ export default function Page() {
       (item) =>
         item?.imeiNumber.toLowerCase().includes(searchText.toLowerCase()) ||
         item?.device.toLowerCase().includes(searchText.toLowerCase()) ||
-        item?.condition.toLowerCase().includes(searchText.toLowerCase())
+        item?.condition.toLowerCase().includes(searchText.toLowerCase()) ||
+        item?.customerName.toLowerCase().includes(searchText.toLowerCase())
     );
     setFilteredItems(filtered);
   };

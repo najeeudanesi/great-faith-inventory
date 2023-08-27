@@ -16,7 +16,7 @@ export default function page() {
   return (
     <div className="m-8">
       <div className="mx-2 my-4 flex gap-12 items-center">
-        <Link href="/api/dashboard" className="flex text-pink-500">
+        <Link href="/dashboard" className="flex text-pink-500">
           {" "}
           <BackwardIcon className="icon" /> Back
         </Link>{" "}

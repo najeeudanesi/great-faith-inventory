@@ -45,7 +45,7 @@ export default function page() {
         <div className="col-span-7 flex justify-end">
           {" "}
           <Link
-            href="/api/dashboard/products/add-new"
+            href="/dashboard/products/add-new"
             className="bg-green-700 text-white px-4 py-2 rounded-md"
           >
             Add New

@@ -1,16 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import "./auth.css";
-import { useState } from "react";
-import { auth, googleProvider } from "../config/firebase";
-import { signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { auth } from "../config/firebase";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Google from "../assets/Google-icon.png";
 import {
   ArrowRightOnRectangleIcon,
   AtSymbolIcon,
   LockClosedIcon,
 } from "@heroicons/react/24/solid";
+
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { useRecoilState, atom } from "recoil";
 import userState from "../../../atoms/atom";
 
@@ -19,9 +20,11 @@ export const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useRecoilState(userState);
+  const [isLoading, setIsLoading] = useState(false);
 
   const signIn = async () => {
     try {
+      setIsLoading(true);
       await signInWithEmailAndPassword(auth, email, password).then(
         (userCredential) => {
           const user = userCredential.user;
@@ -29,27 +32,27 @@ export const Auth = () => {
             email: user.email,
             uid: user.uid,
           };
+
           setUser(loggedInUser);
-          console.log(user);
-          navigate.push("/dashboard");
         }
       );
+      navigate.push("/dashboard");
     } catch (e) {
       console.error("Error occured: " + e);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  const signInWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider).then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
         navigate.push("/dashboard");
-      });
-    } catch (e) {
-      console.error("Error occured: " + e);
-    }
-  };
+      }
+    });
+
+    return unsubscribe;
+  }, [auth]);
 
   return (
     <div className="centered-div w-full max-w-xs">
@@ -79,29 +82,18 @@ export const Auth = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button className="primary-button btn-pad" onClick={signIn}>
-        {" "}
-        <div className="flex justify-center">
-          <ArrowRightOnRectangleIcon className="icon" />
-          Sign in
-        </div>
-      </button>
-
-      <div className="flex justify-end mt-4">
-        <div>
-          {"Don't have an account "}{" "}
-          <a href="/api/sign-up" className="ml-4 text-pink-600 font-semibold">
-            Sign up
-          </a>
-        </div>
-      </div>
       <button
-        className="input input-decoration btn-pad flex justify-center"
-        onClick={signInWithGoogle}
+        className="primary-button btn-pad"
+        onClick={signIn}
+        disabled={isLoading}
       >
-        <div className="flex items-center gap-3">
-          <Image src={Google} alt="Profile" width={30} height={30}></Image>
-          Sign in with Google
+        <div className="flex justify-center">
+          {isLoading ? (
+            <ArrowPathIcon className="animate-spin h-5 w-5 mr-3" />
+          ) : (
+            <ArrowRightOnRectangleIcon className="icon" />
+          )}
+          Sign in
         </div>
       </button>
     </div>

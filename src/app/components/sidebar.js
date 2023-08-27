@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect } from "react";
 import Link from "next/link";
@@ -14,7 +15,7 @@ import {
   InformationCircleIcon,
 } from "@heroicons/react/24/solid";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -40,7 +41,7 @@ const Sidebar = () => {
         unsubscribe();
       };
     });
-  }, [setUser]);
+  }, [db]);
 
   return (
     <div className=" bg-black  h-screen  text-white pt-6 pr-6 outline outline-1 outline-pink-950">

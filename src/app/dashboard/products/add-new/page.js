@@ -7,7 +7,7 @@ export default function page() {
   return (
     <div className="container mx-auto bg-transparent mb-56">
       <div className="mx-12 my-4 flex gap-12 items-center">
-        <Link href="/api/dashboard/products" className="flex text-pink-500">
+        <Link href="/dashboard/products" className="flex text-pink-500">
           {" "}
           <BackwardIcon className="icon" /> Back
         </Link>{" "}
