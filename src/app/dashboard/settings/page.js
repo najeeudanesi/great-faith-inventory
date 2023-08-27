@@ -233,7 +233,7 @@ export default function page() {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="primary-button btn-pad flex justify-center"
+                className="primary-button btn-pad  flex justify-center"
                 disabled={isLoading}
               >
                 {isLoading && (
