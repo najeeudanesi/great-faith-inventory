@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { auth, db } from "../config/firebase";
 import { useRouter } from "next/navigation";
@@ -28,12 +29,12 @@ export default function Page() {
     );
 
     return unsubscribe;
-  }, [data]);
+  }, [db, auth]);
   return (
     <div>
       <div className=" flex flex-col">
-        <div className="grid grid-cols-3">
-          <div className="p-12 col-span-2">
+        <div className="grid grid-cols-1 lg:grid-cols-3">
+          <div className="p-12 lg:col-span-2">
             <div className="mb-8">
               <h1>Daily Activity Report</h1>
               <p className="text-xs">Transaction for this day</p>
@@ -53,12 +54,12 @@ export default function Page() {
               </div>
             </div>
           </div>
-          <div className="col-span-1 p-8 outline outline-1 outline-pink-800 h-screen w-full">
+          <div className="p-8 lg:col-span-1 outline outline-1 outline-pink-800 h-screen w-full">
             <div className="flex gap-4 mb-4">
               {" "}
               <Link
                 href="/dashboard/add-new-sale"
-                className="bg-green-700 text-white px-4 py-2 rounded-md"
+                className="bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-950"
               >
                 Add New
               </Link>{" "}

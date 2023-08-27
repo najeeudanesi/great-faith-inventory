@@ -1,5 +1,6 @@
 "use client";
 import Sidebar from "../components/sidebar";
+import SmallSidebar from "../components/smallSidebar";
 import Topbar from "../components/topbar";
 import { auth } from "../config/firebase";
 import { useRouter } from "next/navigation";
@@ -19,17 +20,24 @@ export default function DashboardLayout({
   }, [user, loading, router]);
   return (
     <div className="fixed w-full">
-      <div className="grid grid-cols-5">
-        <div className="col-span-1">
-          <Sidebar />
-        </div>
-        <div className="col-span-4">
-          <div className="w-full">
-            <Topbar />
+      {user && (
+        <div className="grid grid-cols-5">
+          <div className="lg:hidden col-span-1">
+            <SmallSidebar />
           </div>
-          <div className="overflow-y-auto max-h-screen"> {children}</div>
+          <div className="hidden lg:block col-span-1 ">
+            <Sidebar />
+          </div>
+          <div className="col-span-4">
+            <div className="overflow-y-auto max-h-screen">
+              <div className="w-full">
+                <Topbar />
+              </div>
+              {children}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

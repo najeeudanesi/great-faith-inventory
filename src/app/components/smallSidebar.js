@@ -17,12 +17,12 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../config/firebase";
 
-const Sidebar = () => {
+const SmallSidebar = () => {
   const pathname = usePathname();
   const [user, setUser] = useRecoilState(userState);
 
   const isActive = (route) => {
-    return pathname === route ? "bg-pink-700" : "";
+    return pathname === route ? "bg-pink-700 rounded-md p-4" : "";
   };
 
   useEffect(() => {
@@ -44,10 +44,10 @@ const Sidebar = () => {
   }, [db]);
 
   return (
-    <div className=" bg-black  h-screen  text-white pt-6 pr-6 outline outline-1 outline-pink-950">
+    <div className=" bg-black  h-screen  text-white pt-6 outline outline-1 outline-pink-950">
       <div className="flex flex-col mt-8 items-center">
         <img
-          className="h-24  w-24 rounded-full object-cover"
+          className="h-16  w-16 rounded-full object-cover"
           src={user?.profileImg}
           alt="Profile"
         />
@@ -56,52 +56,36 @@ const Sidebar = () => {
             <p className="text-sm">{user?.email}</p>
           </div>
         </div>
-        <nav className="flex flex-col flex-grow px-4 py-2">
-          <Link
-            href="/dashboard"
-            className={`nav-link ${isActive("/dashboard")}`}
-          >
-            <div className="flex">
-              <Squares2X2Icon className="icon" /> Dashboard
-            </div>
+        <nav className="flex flex-col items-center px-4 py-2 gap-8">
+          <Link href="/dashboard" className={`  ${isActive("/dashboard")}`}>
+            <Squares2X2Icon className="icon" />
           </Link>
 
           <Link
             href="/dashboard/sales"
-            className={`nav-link ${isActive("/dashboard/sales")}`}
+            className={` ${isActive("/dashboard/sales")}`}
           >
-            <div className="flex">
-              <CurrencyDollarIcon className="icon" />
-              Sales
-            </div>
+            <CurrencyDollarIcon className="icon" />
           </Link>
 
           <Link
             href="/dashboard/refunds"
-            className={`nav-link ${isActive("/dashboard/refunds")}`}
+            className={` ${isActive("/dashboard/refunds")}`}
           >
-            <div className="flex">
-              <CurrencyDollarIcon className="icon" />
-              Refunds
-            </div>
+            <CurrencyDollarIcon className="icon" />
           </Link>
 
           <Link
             href="/dashboard/products"
-            className={`nav-link ${isActive("/dashboard/products")}`}
+            className={` ${isActive("/dashboard/products")}`}
           >
-            <div className="flex">
-              <SwatchIcon className="icon" /> Products
-            </div>
+            <SwatchIcon className="icon" />
           </Link>
           <Link
             href="dashboard/settings"
-            className={`nav-link ${isActive("/dashboard/settings")}`}
+            className={`${isActive("/dashboard/settings")}`}
           >
-            <div className="flex">
-              <WrenchScrewdriverIcon className="icon" />
-              Settings
-            </div>
+            <WrenchScrewdriverIcon className="icon" />
           </Link>
         </nav>
       </div>
@@ -109,4 +93,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SmallSidebar;
