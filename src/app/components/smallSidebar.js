@@ -51,11 +51,6 @@ const SmallSidebar = () => {
           src={user?.profileImg}
           alt="Profile"
         />
-        <div className="text-center items-center p-4 mb-6">
-          <div>
-            <p className="text-xs">{user?.email}</p>
-          </div>
-        </div>
         <nav className="flex flex-col items-center px-4 py-2 gap-8">
           <Link href="/dashboard" className={`  ${isActive("/dashboard")}`}>
             <Squares2X2Icon className="icon" />
