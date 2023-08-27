@@ -44,7 +44,7 @@ const SmallSidebar = () => {
   }, [db]);
 
   return (
-    <div className=" bg-black  h-screen  text-white pt-6 outline outline-1 outline-pink-950">
+    <div className=" bg-black  h-screen  text-white pt-6 outline outline-1 outline-pink-950 object-cover">
       <div className="flex flex-col mt-8 items-center">
         <img
           className="h-16  w-16 rounded-full object-cover"
@@ -53,7 +53,7 @@ const SmallSidebar = () => {
         />
         <div className="text-center items-center p-4 mb-6">
           <div>
-            <p className="text-sm">{user?.email}</p>
+            <p className="text-xs">{user?.email}</p>
           </div>
         </div>
         <nav className="flex flex-col items-center px-4 py-2 gap-8">

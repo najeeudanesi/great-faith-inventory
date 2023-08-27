@@ -39,7 +39,7 @@ export default function Page() {
               <h1>Daily Activity Report</h1>
               <p className="text-xs">Transaction for this day</p>
             </div>
-            <div className="grid grid-cols-2 gap-5 ">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               <div>
                 <StockCard />
               </div>
