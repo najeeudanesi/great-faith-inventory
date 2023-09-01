@@ -5,9 +5,24 @@ import SwapSaleForm from "../../components/Forms/swap-sale";
 import BackwardIcon from "@heroicons/react/24/solid/BackwardIcon";
 import Link from "next/link";
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function page() {
   const [activeTab, setActiveTab] = useState("direct");
+
+  const showSuccessMessage = () => {
+    toast.success("success", {
+      position: toast.POSITION.TOP_RIGHT,
+      theme: "dark",
+    });
+  };
+  const showErrorMessage = () => {
+    toast.error("error", {
+      position: toast.POSITION.TOP_RIGHT,
+      theme: "dark",
+    });
+  };
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -15,12 +30,7 @@ export default function page() {
 
   return (
     <div className="m-8">
-      <div className="mx-2 my-4 flex gap-12 items-center">
-        <Link href="/dashboard" className="flex text-pink-500">
-          {" "}
-          <BackwardIcon className="icon" /> Back
-        </Link>{" "}
-      </div>
+      <ToastContainer />
       <div className="flex mb-4 gap-8">
         <button
           className={`btn-pad bg-transparent ${
@@ -41,7 +51,10 @@ export default function page() {
       </div>
       {activeTab === "direct" && (
         <div className="container pb-48">
-          <DirectSaleForm />
+          <DirectSaleForm
+            showErrorMessage={showErrorMessage}
+            showSuccessMessage={showSuccessMessage}
+          />
         </div>
       )}
       {activeTab === "swap" && (

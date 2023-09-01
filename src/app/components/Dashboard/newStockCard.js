@@ -1,20 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const NewStockCard = () => {
+const NewStockCard = (props) => {
   const [activeTab, setActiveTab] = useState("new");
-  const [salesData, setSalesData] = useState({
-    new: {
-      phones: 50,
-      laptops: 30,
-      others: 20,
-    },
-
-    used: {
-      phones: 50,
-      laptops: 30,
-      others: 20,
-    },
-  });
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -48,15 +35,15 @@ const NewStockCard = () => {
           <div>
             <div className="flex justify-between mb-2">
               <span>Phones:</span>
-              <span>{salesData.new.phones}</span>
+              <span>{props?.newStockCount}</span>
             </div>
             <div className="flex justify-between mb-2">
               <span>Laptops:</span>
-              <span>{salesData.new.laptops}</span>
+              <span>{props?.newStockCount}</span>
             </div>
             <div className="flex justify-between">
               <span>Others:</span>
-              <span>{salesData.new.others}</span>
+              <span>{props?.newStockCount}</span>
             </div>
           </div>
         ) : (
@@ -64,15 +51,15 @@ const NewStockCard = () => {
             {" "}
             <div className="flex justify-between mb-2">
               <span>Phones:</span>
-              <span>{salesData.used.phones}</span>
+              <span>{props?.oldStockCount}</span>
             </div>
             <div className="flex justify-between mb-2">
               <span>Laptops:</span>
-              <span>{salesData.used.laptops}</span>
+              <span>{props?.oldStockCount}</span>
             </div>
             <div className="flex justify-between">
               <span>Others:</span>
-              <span>{salesData.used.others}</span>
+              <span>{props?.oldStockCount}</span>
             </div>
           </div>
         )}

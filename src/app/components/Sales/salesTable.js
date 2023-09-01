@@ -2,7 +2,7 @@
 import React from "react";
 const SalesTable = ({ data }) => {
   return (
-    <div className="px-8">
+    <div className="px-8 overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-800">
         <thead className="bg-gray-800">
           <tr>

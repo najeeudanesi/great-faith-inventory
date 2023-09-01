@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import { db } from "../../config/firebase";
 import {
   addDoc,
@@ -14,7 +15,7 @@ import {
 } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-const DirectSaleForm = () => {
+const DirectSaleForm = ({ showSuccessMessage, showErrorMessage }) => {
   const [customerName, setCustomerName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [item, setItem] = useState(null);
@@ -41,6 +42,7 @@ const DirectSaleForm = () => {
     try {
       // Create a new stock document in the Firestore collection
       const stockDocRef = await addDoc(collection(db, "sales"), {
+        category: item?.category,
         device: item?.device,
         image: item?.image,
         color: item?.color,
@@ -51,32 +53,37 @@ const DirectSaleForm = () => {
         customerPhoneNumber: phoneNumber,
         imeiNumber: imeiNumber,
         date: serverTimestamp(),
+      }).then(() => {
+        showSuccessMessage();
       });
-
       setLoading(false);
-      setModalOpen(false);
       console.log("Document successfully written!");
 
       // Get the stock documents with the specified imeiNumber
-      const stockQuerySnapshot = await getDocs(
+      await getDocs(
         query(collection(db, "stocks"), where("imeiNumber", "==", imeiNumber))
-      );
+      ).then((res) => {
+        res.forEach((stockDoc) => {
+          deleteDoc(doc(db, "stocks", stockDoc.id));
+          console.log(
+            "Stock document with IMEI Number:",
+            imeiNumber,
+            "deleted successfully!"
+          );
+        });
 
-      // Delete the stock document with the specified imeiNumber (assuming only one document matches the condition)
-      stockQuerySnapshot.forEach((stockDoc) => {
-        deleteDoc(doc(db, "stocks", stockDoc.id));
-        console.log(
-          "Stock document with IMEI Number:",
-          imeiNumber,
-          "deleted successfully!"
-        );
+        showSuccessMessage();
       });
+      // Delete the stock document with the specified imeiNumber (assuming only one document matches the condition)
 
-      router.push("/api/dashboard");
+      setLoading(false);
+      setModalOpen(false);
+      router.push("/dashboard");
     } catch (e) {
       console.error(e);
       setLoading(false);
       setModalOpen(false);
+      showErrorMessage();
     }
   };
 
@@ -100,7 +107,7 @@ const DirectSaleForm = () => {
   };
 
   const handleModalClose = () => {
-    setModalOpen(false); // Close the modal
+    setModalOpen(false);
   };
 
   return (
@@ -116,6 +123,7 @@ const DirectSaleForm = () => {
             className="input input-decoration"
             value={customerName}
             onChange={handleCustomerNameChange}
+            required
           />
         </div>
         <div className="w-1/2">
@@ -128,6 +136,7 @@ const DirectSaleForm = () => {
             className="input input-decoration"
             value={phoneNumber}
             onChange={handlePhoneNumberChange}
+            required
           />
         </div>
       </div>
@@ -143,6 +152,7 @@ const DirectSaleForm = () => {
             className="input input-decoration"
             value={imeiNumber}
             onChange={(e) => setImeiNumber(e.target.value)}
+            required
           />
         </div>
         <div className="w-full">
@@ -155,6 +165,7 @@ const DirectSaleForm = () => {
             className="input input-decoration"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            required
           />
         </div>
       </div>
@@ -203,7 +214,14 @@ const DirectSaleForm = () => {
                     className="btn-pad rounded-md font-semibold bg-green-700"
                     onClick={() => makeSale()}
                   >
-                    Confirm
+                    {loading ? (
+                      <div className="flex gap-1">
+                        <ArrowPathIcon className="animate-spin h-5 w-5" />
+                        waiting
+                      </div>
+                    ) : (
+                      <div> Confirm</div>
+                    )}
                   </button>
                 </div>
               </>

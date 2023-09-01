@@ -9,27 +9,61 @@ import RecentCard from "../components/Dashboard/recentCard";
 import ReturnCard from "../components/Dashboard/returnCard";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 
 export default function Page() {
-  const [data, setData] = useState([]);
+  const [dataSales, setDataSales] = useState([]);
+  const [newSalesCount, setNewSalesCount] = useState([]);
+  const [oldSalesCount, setOldSalesCount] = useState([]);
+  const [oldStockCount, setOldStockCount] = useState([]);
+  const [newStockCount, setNewStockCount] = useState([]);
   const navigate = useRouter();
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
       query(collection(db, "sales"), orderBy("date", "desc")),
       (snapshot) => {
-        // Extract data from the querySnapshot and convert to an array of objects
-        const newData = snapshot.docs.map((doc) => ({
+        // Extract dataSales from the querySnapshot and convert to an array of objects
+        const newDataSales = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setData(newData);
+        setDataSales(newDataSales);
       }
     );
 
     return unsubscribe;
   }, [db, auth]);
+
+  useEffect(() => {
+    onSnapshot(
+      query(
+        collection(db, "stock"),
+        where("condition", "==", "new"),
+        orderBy("date", "desc")
+      ),
+      (snapshot) => {
+        setNewStockCount(snapshot.docs.length);
+      }
+    );
+    onSnapshot(
+      query(
+        collection(db, "stock"),
+        where("condition", "==", "used"),
+        orderBy("date", "desc")
+      ),
+      (snapshot) => {
+        setOldStockCount(snapshot.docs.length);
+      }
+    );
+  }, [db]);
+
   return (
     <div>
       <div className=" flex flex-col">
@@ -44,7 +78,10 @@ export default function Page() {
                 <StockCard />
               </div>
               <div>
-                <NewStockCard />
+                <NewStockCard
+                  newStock={newStockCount}
+                  oldStock={oldStockCount}
+                />
               </div>
               <div>
                 <SalesCard />
@@ -64,7 +101,7 @@ export default function Page() {
                 Add New
               </Link>{" "}
             </div>
-            {data.slice(0, 3).map((item, index) => (
+            {dataSales.slice(0, 3).map((item, index) => (
               <div key={index} className="mb-4">
                 <RecentCard data={item} />
               </div>
