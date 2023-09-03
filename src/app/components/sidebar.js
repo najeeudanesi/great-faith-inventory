@@ -11,8 +11,8 @@ import {
   SwatchIcon,
   CurrencyDollarIcon,
   WrenchScrewdriverIcon,
-  CircleStackIcon,
-  InformationCircleIcon,
+  ReceiptRefundIcon,
+  UsersIcon,
 } from "@heroicons/react/24/solid";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../config/firebase";
@@ -81,7 +81,7 @@ const Sidebar = () => {
             className={`nav-link ${isActive("/dashboard/refunds")}`}
           >
             <div className="flex">
-              <CurrencyDollarIcon className="icon" />
+              <ReceiptRefundIcon className="icon" />
               Refunds
             </div>
           </Link>
@@ -92,6 +92,15 @@ const Sidebar = () => {
           >
             <div className="flex">
               <SwatchIcon className="icon" /> Products
+            </div>
+          </Link>
+          <Link
+            href="dashboard/users"
+            className={`nav-link ${isActive("/dashboard/users")}`}
+          >
+            <div className="flex">
+              <UsersIcon className="icon" />
+              Users
             </div>
           </Link>
           <Link

@@ -11,8 +11,8 @@ import {
   SwatchIcon,
   CurrencyDollarIcon,
   WrenchScrewdriverIcon,
-  CircleStackIcon,
-  InformationCircleIcon,
+  ReceiptRefundIcon,
+  UsersIcon,
 } from "@heroicons/react/24/solid";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../config/firebase";
@@ -67,7 +67,7 @@ const SmallSidebar = () => {
             href="/dashboard/refunds"
             className={` ${isActive("/dashboard/refunds")}`}
           >
-            <CurrencyDollarIcon className="icon" />
+            <ReceiptRefundIcon className="icon" />
           </Link>
 
           <Link
@@ -75,6 +75,12 @@ const SmallSidebar = () => {
             className={` ${isActive("/dashboard/products")}`}
           >
             <SwatchIcon className="icon" />
+          </Link>
+          <Link
+            href="dashboard/users"
+            className={`${isActive("/dashboard/users")}`}
+          >
+            <UsersIcon className="icon" />
           </Link>
           <Link
             href="dashboard/settings"

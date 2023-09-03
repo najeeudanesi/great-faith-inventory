@@ -1,5 +1,4 @@
 "use client";
-import SalesTable from "../../components/Sales/salesTable";
 import React, { useState, useEffect } from "react";
 import SearchComponent from "../../components/searchComponent";
 import { db } from "../../config/firebase";
@@ -10,6 +9,8 @@ import {
   orderBy,
   where,
 } from "firebase/firestore";
+import RefundsTable from "../../components/Refunds/refundsTable";
+import Link from "next/link";
 
 export default function Page() {
   const [itemsList, setItemsList] = useState([]);
@@ -32,7 +33,7 @@ export default function Page() {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      query(collection(db, "sales"), orderBy("date", "desc")),
+      query(collection(db, "refunds"), orderBy("date", "desc")),
       (snapshot) => {
         // Extract data from the querySnapshot and convert to an array of objects
         const data = snapshot.docs.map((doc) => ({
@@ -88,13 +89,20 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-12 px-8">
-        <div className="col-span-5">
-          <SearchComponent onSearch={handleSearch} />
+      <div className="px-8 ">
+        <div className="flex justify-between">
+          <div className="w-1/2">
+            <SearchComponent onSearch={handleSearch} />
+          </div>
+          <Link
+            href="/dashboard/refunds/make-refund"
+            className="bg-green-700 text-white px-4 py-2 my-3 rounded-md hover:bg-green-950"
+          >
+            Make Refund
+          </Link>
         </div>
       </div>
-
-      <SalesTable data={filteredItems} />
+      <RefundsTable data={filteredItems} />
     </div>
   );
 }

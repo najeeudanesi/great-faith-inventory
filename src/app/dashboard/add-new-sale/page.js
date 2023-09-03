@@ -2,8 +2,6 @@
 "use client";
 import DirectSaleForm from "../../components/Forms/direct-sale";
 import SwapSaleForm from "../../components/Forms/swap-sale";
-import BackwardIcon from "@heroicons/react/24/solid/BackwardIcon";
-import Link from "next/link";
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
