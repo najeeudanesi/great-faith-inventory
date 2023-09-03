@@ -1,22 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const StockCard = () => {
+const StockCard = ({ data }) => {
   const [activeTab, setActiveTab] = useState("new");
-  const [salesData, setSalesData] = useState({
-    new: {
-      phones: 50,
-      laptops: 30,
-      others: 20,
-    },
-
+  const [stockData, setStockData] = useState({
     used: {
-      phones: 50,
-      laptops: 30,
-      others: 20,
+      phones: 0,
+      laptops: 0,
+      others: 0,
+    },
+    new: {
+      phones: 0,
+      laptops: 0,
+      others: 0,
     },
   });
 
+  useEffect(() => {
+    if (data) {
+      const newData = {
+        used: {
+          phones: 0,
+          laptops: 0,
+          others: 0,
+        },
+        new: {
+          phones: 0,
+          laptops: 0,
+          others: 0,
+        },
+      };
+
+      // Loop through the data and update stockData
+      Object.values(data).forEach((item) => {
+        const { category, condition } = item;
+
+        if (condition === "used") {
+          newData.used[category + "s"] += 1;
+        } else if (condition === "new") {
+          newData.new[category + "s"] += 1;
+        }
+      });
+
+      setStockData(newData);
+    }
+  }, [data]);
+
   const handleTabClick = (tab) => {
+    console.log(data);
     setActiveTab(tab);
   };
 
@@ -24,6 +54,7 @@ const StockCard = () => {
     <div className="bg-pink-950 rounded-lg p-8 h-54 w-54 mb-2">
       <div className="flex justify-between items-center mb-4">
         <div className="text-md font-bold text-left">Stock</div>
+
         <div className="flex">
           <button
             className={`mr-2 px-2 py-1 rounded text-sm ${
@@ -48,15 +79,15 @@ const StockCard = () => {
           <div>
             <div className="flex justify-between mb-2">
               <span>Phones:</span>
-              <span>{salesData.new.phones}</span>
+              <span>{stockData.new.phones}</span>
             </div>
             <div className="flex justify-between mb-2">
               <span>Laptops:</span>
-              <span>{salesData.new.laptops}</span>
+              <span>{stockData.new.laptops}</span>
             </div>
             <div className="flex justify-between">
               <span>Others:</span>
-              <span>{salesData.new.others}</span>
+              <span>{stockData.new.others}</span>
             </div>
           </div>
         ) : (
@@ -64,15 +95,15 @@ const StockCard = () => {
             {" "}
             <div className="flex justify-between mb-2">
               <span>Phones:</span>
-              <span>{salesData.used.phones}</span>
+              <span>{stockData.used.phones}</span>
             </div>
             <div className="flex justify-between mb-2">
               <span>Laptops:</span>
-              <span>{salesData.used.laptops}</span>
+              <span>{stockData.used.laptops}</span>
             </div>
             <div className="flex justify-between">
               <span>Others:</span>
-              <span>{salesData.used.others}</span>
+              <span>{stockData.used.others}</span>
             </div>
           </div>
         )}

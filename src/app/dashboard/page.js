@@ -19,11 +19,8 @@ import {
 
 export default function Page() {
   const [dataSales, setDataSales] = useState([]);
-  const [newSalesCount, setNewSalesCount] = useState([]);
-  const [oldSalesCount, setOldSalesCount] = useState([]);
-  const [oldStockCount, setOldStockCount] = useState([]);
-  const [newStockCount, setNewStockCount] = useState([]);
-  const navigate = useRouter();
+  const [dataRefunds, setDataRefunds] = useState([]);
+  const [dataStocks, setDataStocks] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -37,32 +34,30 @@ export default function Page() {
         setDataSales(newDataSales);
       }
     );
-
     return unsubscribe;
   }, [db, auth]);
 
   useEffect(() => {
     onSnapshot(
-      query(
-        collection(db, "stock"),
-        where("condition", "==", "new"),
-        orderBy("date", "desc")
-      ),
-      (snapshot) => {
-        setNewStockCount(snapshot.docs.length);
-      }
+      query(collection(db, "stocks"), orderBy("timestamp", "desc")),
+      (snapshot) =>
+        setDataStocks(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }))
+        )
     );
-    onSnapshot(
-      query(
-        collection(db, "stock"),
-        where("condition", "==", "used"),
-        orderBy("date", "desc")
-      ),
-      (snapshot) => {
-        setOldStockCount(snapshot.docs.length);
-      }
+
+    onSnapshot(query(collection(db, "refunds")), (snapshot) =>
+      setDataRefunds(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+      )
     );
-  }, [db]);
+  }, [db, auth]);
 
   return (
     <div>
@@ -75,19 +70,13 @@ export default function Page() {
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
               <div>
-                <StockCard />
+                <StockCard data={dataStocks} />
               </div>
               <div>
-                <NewStockCard
-                  newStock={newStockCount}
-                  oldStock={oldStockCount}
-                />
+                <SalesCard data={dataSales} />
               </div>
               <div>
-                <SalesCard />
-              </div>
-              <div>
-                <ReturnCard />
+                <ReturnCard data={dataRefunds} />
               </div>
             </div>
           </div>

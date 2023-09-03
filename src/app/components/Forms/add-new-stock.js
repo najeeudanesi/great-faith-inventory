@@ -21,7 +21,7 @@ const AddNewStockForm = () => {
   const [storageSize, setStorageSize] = useState("16gb");
   const [condition, setCondition] = useState("new");
   const [imeiNumber, setImeiNumber] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("phone");
 
   const filePickerRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -239,6 +239,9 @@ const AddNewStockForm = () => {
                 16GB
               </option>
               <option value="64gb" className="option">
+                32GB
+              </option>
+              <option value="64gb" className="option">
                 64GB
               </option>
               <option value="128gb" className="option">
@@ -246,6 +249,12 @@ const AddNewStockForm = () => {
               </option>
               <option value="256gb" className="option">
                 256GB
+              </option>
+              <option value="256gb" className="option">
+                500GB
+              </option>
+              <option value="256gb" className="option">
+                1TB
               </option>
               {/* Add storage options here */}
             </select>
